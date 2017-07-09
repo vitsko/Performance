@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Calculate
+﻿namespace Calculate
 {
+    using System.Collections;
+    using System.Collections.Generic;
+
     internal static class Data
     {
         internal const string ForSearch = "search";
-        private const int FirstPart = 10000,
-                          SecondPart = 9999;
+        private const int FirstPart = 1000000,
+                          SecondPart = 999999;
 
         internal static ArrayList GetDataForArrayList()
         {
@@ -30,6 +26,25 @@ namespace Calculate
             }
 
             return array;
+        }
+
+        internal static LinkedList<object> GetDataForLinkedList()
+        {
+            LinkedList<object> linkedList = new LinkedList<object>();
+
+            for (var i = 0; i < Data.FirstPart; i++)
+            {
+                linkedList.AddLast(new object());
+            }
+
+            linkedList.AddLast(ForSearch);
+
+            for (var i = 0; i < Data.SecondPart; i++)
+            {
+                linkedList.AddLast(new object());
+            }
+
+            return linkedList;
         }
     }
 }

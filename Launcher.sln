@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Launcher", "Launcher\Launch
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculate", "Calculate\Calculate.csproj", "{C6A838F5-1317-4685-A45C-9FA7921A8E11}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Text", "Text\Text.csproj", "{2D1B65D2-A83A-430F-AA93-2F1B70FDC18E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{C6A838F5-1317-4685-A45C-9FA7921A8E11}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C6A838F5-1317-4685-A45C-9FA7921A8E11}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C6A838F5-1317-4685-A45C-9FA7921A8E11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D1B65D2-A83A-430F-AA93-2F1B70FDC18E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D1B65D2-A83A-430F-AA93-2F1B70FDC18E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D1B65D2-A83A-430F-AA93-2F1B70FDC18E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D1B65D2-A83A-430F-AA93-2F1B70FDC18E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

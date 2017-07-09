@@ -1,17 +1,17 @@
 ﻿namespace Calculate
 {
-    using System.Collections;
+    using System.Collections.Generic;
     using Text;
 
-    public class CalculateArrayList : Calculate
+    public class CalculateLinkedList : Calculate
     {
-        private static ArrayList arrayList = new ArrayList();
+        private static LinkedList<object> linkedList = new LinkedList<object>();
 
         public override long GetPerformanceToAdd()
         {
-            if (arrayList.Count != 0)
+            if (linkedList.Count != 0)
             {
-                arrayList.Clear();
+                linkedList.Clear();
             }
 
             Watch.Reset();
@@ -19,7 +19,7 @@
 
             for (var i = 0; i < Calculate.CountOfObject; i++)
             {
-                arrayList.Add(new object());
+                linkedList.AddLast(new object());
             }
 
             Watch.Stop();
@@ -29,13 +29,13 @@
 
         public override long GetPerformanceToSearch()
         {
-            arrayList = Data.GetDataForArrayList();
+            linkedList = Data.GetDataForLinkedList();
 
             Watch.Reset();
             Watch.Start();
 
-            var indexResult = arrayList.IndexOf(Data.ForSearch);
-            var result = arrayList[indexResult];
+            var node = linkedList.Find(Data.ForSearch);
+            var result = node.Value;
 
             Watch.Stop();
 
@@ -44,24 +44,27 @@
 
         public override long GetPerformanceToClear()
         {
-            if (arrayList.Count == 0)
+            if (linkedList.Count == 0)
             {
-                arrayList = Data.GetDataForArrayList();
+                linkedList = Data.GetDataForLinkedList();
             }
 
             Watch.Reset();
             Watch.Start();
 
-            arrayList.RemoveRange(0, CalculateArrayList.CountOfObject);
+            for (var i = 0; i < Calculate.CountOfObject; i++)
+            {
+                linkedList.RemoveLast();
+            }
 
             Watch.Stop();
 
-            return Watch.ElapsedMilliseconds;
+            return Watch.ElapsedMilliseconds - Calculate.GetOverhead();
         }
 
         public override string ToString()
         {
-            return Text.ArrayList;
+            return Text.LinkedList;
         }
     }
 }

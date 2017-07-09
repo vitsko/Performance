@@ -42,8 +42,15 @@
   <ItemGroup>
     <Compile Include="Calculate.cs" />
     <Compile Include="CalculateArrayList.cs" />
+    <Compile Include="CalculateLinkedList.cs" />
     <Compile Include="Data.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Text\Text.csproj">
+      <Project>{2d1b65d2-a83a-430f-aa93-2f1b70fdc18e}</Project>
+      <Name>Text</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
