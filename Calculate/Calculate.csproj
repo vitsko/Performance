@@ -7,8 +7,8 @@
     <ProjectGuid>{C6A838F5-1317-4685-A45C-9FA7921A8E11}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CompareCollections</RootNamespace>
-    <AssemblyName>CompareCollections</AssemblyName>
+    <RootNamespace>Calculate</RootNamespace>
+    <AssemblyName>Calculate</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -42,7 +42,11 @@
   <ItemGroup>
     <Compile Include="Calculate.cs" />
     <Compile Include="CalculateArrayList.cs" />
+    <Compile Include="CalculateDictionary.cs" />
+    <Compile Include="CalculateHashTable.cs" />
     <Compile Include="CalculateLinkedList.cs" />
+    <Compile Include="CalculateQueue.cs" />
+    <Compile Include="CalculateStack.cs" />
     <Compile Include="Data.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

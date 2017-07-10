@@ -26,6 +26,20 @@
                             break;
                         }
 
+                    case ConsoleKey.D2:
+                    case ConsoleKey.NumPad2:
+                        {
+                            Screen.ShowResultCompare(new CalculateStack(), new CalculateQueue());
+                            break;
+                        }
+
+                    case ConsoleKey.D3:
+                    case ConsoleKey.NumPad3:
+                        {
+                            Screen.ShowResultCompare(new CalculateHashTable(), new CalculateDictionary());
+                            break;
+                        }
+
                     case ConsoleKey.Q:
                         exit = true;
                         break;
