@@ -25,19 +25,19 @@
 
             Watch.Stop();
 
-            return Watch.ElapsedMilliseconds - Calculate.GetOverhead();
+            return Calculate.GetResultWithoutOverhead();
         }
 
         public override long GetPerformanceToSearch()
         {
-            dictionary = Data.GetDataForDictionary();
+            dictionary = (Dictionary<int, object>)Data.ListObject.Find(item => item is Dictionary<int, object>);
 
             Watch.Reset();
             Watch.Start();
 
-            var result = dictionary.Where(item => item.Value.Equals(Data.ForSearch))
-                                   .First(item => item.Value.Equals(Data.ForSearch))
-                                   .Value;
+            var result = dictionary.Values
+                                   .OfType<string>()
+                                   .Where(item => item.Equals(Data.ForSearch));
 
             Watch.Stop();
 
@@ -48,7 +48,7 @@
         {
             if (dictionary.Count == 0)
             {
-                dictionary = Data.GetDataForDictionary();
+                dictionary = (Dictionary<int, object>)Data.ListObject.Find(item => item is Dictionary<int, object>);
             }
 
             Watch.Reset();
@@ -61,7 +61,7 @@
 
             Watch.Stop();
 
-            return Watch.ElapsedMilliseconds - Calculate.GetOverhead();
+            return Calculate.GetResultWithoutOverhead();
         }
 
         public override string ToString()

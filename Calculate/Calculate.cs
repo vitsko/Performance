@@ -4,7 +4,7 @@
 
     public abstract class Calculate
     {
-        internal const int CountOfObject = 2000000;
+        public const int CountOfObject = 2000000;
         private static Stopwatch watch;
 
         protected static Stopwatch Watch
@@ -38,6 +38,11 @@
             watch.Stop();
 
             return watch.ElapsedMilliseconds;
+        }
+
+        protected static long GetResultWithoutOverhead()
+        {
+            return Watch.ElapsedMilliseconds - Calculate.GetOverhead();
         }
     }
 }

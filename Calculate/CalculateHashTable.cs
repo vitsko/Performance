@@ -1,11 +1,12 @@
 ﻿namespace Calculate
 {
     using System.Collections;
+    using System.Collections.Generic;
+    using System.Linq;
     using Text;
 
     public class CalculateHashTable : Calculate
     {
-        private const int KeyForSearch = 1000000;
         private static Hashtable hashtable = new Hashtable();
 
         public override long GetPerformanceToAdd()
@@ -25,35 +26,30 @@
 
             Watch.Stop();
 
-            return Watch.ElapsedMilliseconds - Calculate.GetOverhead();
+            return Calculate.GetResultWithoutOverhead();
         }
 
         public override long GetPerformanceToSearch()
         {
-            hashtable = Data.GetDataForHashtable();
+            hashtable = (Hashtable)Data.ListObject.Find(item => item is Hashtable);
 
             Watch.Reset();
             Watch.Start();
 
-            for (var i = 0; i < Calculate.CountOfObject; i++)
-            {
-                if (hashtable[i].Equals(Data.ForSearch))
-                {
-                    var result = hashtable[i];
-                    break;
-                }
-            }
+            var result = hashtable.Values
+                        .OfType<string>()
+                        .Where(item => item.Equals(Data.ForSearch));
 
             Watch.Stop();
 
-            return Watch.ElapsedMilliseconds - Calculate.GetOverhead();
+            return Watch.ElapsedMilliseconds;
         }
 
         public override long GetPerformanceToClear()
         {
             if (hashtable.Count == 0)
             {
-                hashtable = Data.GetDataForHashtable();
+                hashtable = (Hashtable)Data.ListObject.Find(item => item is Hashtable);
             }
 
             Watch.Reset();
@@ -66,7 +62,7 @@
 
             Watch.Stop();
 
-            return Watch.ElapsedMilliseconds - Calculate.GetOverhead();
+            return Calculate.GetResultWithoutOverhead();
         }
 
         public override string ToString()

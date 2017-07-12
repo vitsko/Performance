@@ -61,7 +61,7 @@ namespace Text {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} vs {1}:.
+        ///   Looks up a localized string similar to {0} vs {1}  work with {2} items into each collections:.
         /// </summary>
         public static string AboutCompare {
             get {

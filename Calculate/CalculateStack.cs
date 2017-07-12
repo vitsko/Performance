@@ -1,6 +1,5 @@
 ﻿namespace Calculate
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using Text;
@@ -26,12 +25,12 @@
 
             Watch.Stop();
 
-            return Watch.ElapsedMilliseconds - Calculate.GetOverhead();
+            return Calculate.GetResultWithoutOverhead();
         }
 
         public override long GetPerformanceToSearch()
         {
-            stack = Data.GetDataForStack();
+            stack = (Stack<object>)Data.ListObject.Find(item => item is Stack<object>);
 
             Watch.Reset();
             Watch.Start();
@@ -47,7 +46,7 @@
         {
             if (stack.Count == 0)
             {
-                stack = Data.GetDataForStack();
+                stack = (Stack<object>)Data.ListObject.Find(item => item is Stack<object>);
             }
 
             Watch.Reset();
@@ -60,7 +59,7 @@
 
             Watch.Stop();
 
-            return Watch.ElapsedMilliseconds - Calculate.GetOverhead();
+            return Calculate.GetResultWithoutOverhead();
         }
 
         public override string ToString()

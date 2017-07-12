@@ -146,7 +146,7 @@
     <value>Dictionary</value>
   </data>
   <data name="AboutCompare" xml:space="preserve">
-    <value>{0} vs {1}:</value>
+    <value>{0} vs {1}  work with {2} items into each collections:</value>
   </data>
   <data name="CompareToAdd" xml:space="preserve">
     <value>Compare Add:</value>

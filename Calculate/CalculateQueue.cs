@@ -25,12 +25,12 @@
 
             Watch.Stop();
 
-            return Watch.ElapsedMilliseconds - Calculate.GetOverhead();
+            return Calculate.GetResultWithoutOverhead();
         }
 
         public override long GetPerformanceToSearch()
         {
-            queue = Data.GetDataForQueue();
+            queue = (Queue<object>)Data.ListObject.Find(item => item is Queue<object>);
 
             Watch.Reset();
             Watch.Start();
@@ -46,7 +46,7 @@
         {
             if (queue.Count == 0)
             {
-                queue = Data.GetDataForQueue();
+                queue = (Queue<object>)Data.ListObject.Find(item => item is Queue<object>);
             }
 
             Watch.Reset();
@@ -59,7 +59,7 @@
 
             Watch.Stop();
 
-            return Watch.ElapsedMilliseconds - Calculate.GetOverhead();
+            return Calculate.GetResultWithoutOverhead();
         }
 
         public override string ToString()

@@ -1,6 +1,7 @@
 ﻿namespace Calculate
 {
     using System.Collections;
+    using System.Linq;
     using Text;
 
     public class CalculateArrayList : Calculate
@@ -24,18 +25,18 @@
 
             Watch.Stop();
 
-            return Watch.ElapsedMilliseconds - Calculate.GetOverhead();
+            return Calculate.GetResultWithoutOverhead();
         }
 
         public override long GetPerformanceToSearch()
         {
-            arrayList = Data.GetDataForArrayList();
+            arrayList = (ArrayList)Data.ListObject.Find(item => item is ArrayList);
 
             Watch.Reset();
             Watch.Start();
 
-            var indexResult = arrayList.IndexOf(Data.ForSearch);
-            var result = arrayList[indexResult];
+            var result = arrayList.OfType<string>()
+                                  .Where(item => item.Equals(Data.ForSearch));
 
             Watch.Stop();
 
@@ -46,7 +47,7 @@
         {
             if (arrayList.Count == 0)
             {
-                arrayList = Data.GetDataForArrayList();
+                arrayList = (ArrayList)Data.ListObject.Find(item => item is ArrayList);
             }
 
             Watch.Reset();

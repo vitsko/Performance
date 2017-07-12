@@ -1,6 +1,7 @@
 ﻿namespace Calculate
 {
     using System.Collections.Generic;
+    using System.Linq;
     using Text;
 
     public class CalculateLinkedList : Calculate
@@ -24,18 +25,17 @@
 
             Watch.Stop();
 
-            return Watch.ElapsedMilliseconds - Calculate.GetOverhead();
+            return Calculate.GetResultWithoutOverhead();
         }
 
         public override long GetPerformanceToSearch()
         {
-            linkedList = Data.GetDataForLinkedList();
+            linkedList = (LinkedList<object>)Data.ListObject.Find(item => item is LinkedList<object>);
 
             Watch.Reset();
             Watch.Start();
 
-            var node = linkedList.Find(Data.ForSearch);
-            var result = node.Value;
+            var result = linkedList.Where(item => item.Equals(Data.ForSearch));
 
             Watch.Stop();
 
@@ -46,7 +46,7 @@
         {
             if (linkedList.Count == 0)
             {
-                linkedList = Data.GetDataForLinkedList();
+                linkedList = (LinkedList<object>)Data.ListObject.Find(item => item is LinkedList<object>);
             }
 
             Watch.Reset();
@@ -59,7 +59,7 @@
 
             Watch.Stop();
 
-            return Watch.ElapsedMilliseconds - Calculate.GetOverhead();
+            return Calculate.GetResultWithoutOverhead();
         }
 
         public override string ToString()

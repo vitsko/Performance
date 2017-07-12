@@ -25,7 +25,7 @@
             var firstResult = firstToCompare.GetPerformanceToAdd();
             var secondResult = secondToCompare.GetPerformanceToAdd();
 
-            builder.AppendFormat(Text.AboutCompare, firstName, secondName);
+            builder.AppendFormat(Text.AboutCompare, firstName, secondName, Calculate.CountOfObject);
             builder.AppendLine();
 
             AboutPerformanceOperatin(builder, firstName, secondName, Text.CompareToAdd, firstResult, secondResult);
