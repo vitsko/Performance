@@ -10,11 +10,6 @@
 
         public override long GetPerformanceToAdd()
         {
-            if (queue.Count != 0)
-            {
-                queue.Clear();
-            }
-
             Watch.Reset();
             Watch.Start();
 
@@ -24,6 +19,8 @@
             }
 
             Watch.Stop();
+
+            queue.Clear();
 
             return Calculate.GetResultWithoutOverhead();
         }
@@ -35,7 +32,7 @@
             Watch.Reset();
             Watch.Start();
 
-            var result = queue.Where(item => item.Equals(Data.ForSearch));
+            var result = queue.ToArray().Where(item => item.Equals(Data.ForSearch));
 
             Watch.Stop();
 
@@ -44,10 +41,7 @@
 
         public override long GetPerformanceToClear()
         {
-            if (queue.Count == 0)
-            {
-                queue = (Queue<object>)Data.ListObject.Find(item => item is Queue<object>);
-            }
+            queue = (Queue<object>)Data.GetValue().Find(item => item is Queue<object>);
 
             Watch.Reset();
             Watch.Start();

@@ -10,11 +10,6 @@
 
         public override long GetPerformanceToAdd()
         {
-            if (stack.Count != 0)
-            {
-                stack.Clear();
-            }
-
             Watch.Reset();
             Watch.Start();
 
@@ -24,6 +19,8 @@
             }
 
             Watch.Stop();
+
+            stack.Clear();
 
             return Calculate.GetResultWithoutOverhead();
         }
@@ -35,7 +32,7 @@
             Watch.Reset();
             Watch.Start();
 
-            var result = stack.Where(item => item.Equals(Data.ForSearch));
+            var result = stack.ToArray().Where(item => item.Equals(Data.ForSearch));
 
             Watch.Stop();
 
@@ -44,10 +41,7 @@
 
         public override long GetPerformanceToClear()
         {
-            if (stack.Count == 0)
-            {
-                stack = (Stack<object>)Data.ListObject.Find(item => item is Stack<object>);
-            }
+            stack = (Stack<object>)Data.GetValue().Find(item => item is Stack<object>);
 
             Watch.Reset();
             Watch.Start();

@@ -11,11 +11,6 @@
 
         public override long GetPerformanceToAdd()
         {
-            if (hashtable.Count != 0)
-            {
-                hashtable.Clear();
-            }
-
             Watch.Reset();
             Watch.Start();
 
@@ -25,6 +20,8 @@
             }
 
             Watch.Stop();
+
+            hashtable.Clear();
 
             return Calculate.GetResultWithoutOverhead();
         }
@@ -38,6 +35,7 @@
 
             var result = hashtable.Values
                         .OfType<string>()
+                        .ToList()
                         .Where(item => item.Equals(Data.ForSearch));
 
             Watch.Stop();
@@ -47,10 +45,7 @@
 
         public override long GetPerformanceToClear()
         {
-            if (hashtable.Count == 0)
-            {
-                hashtable = (Hashtable)Data.ListObject.Find(item => item is Hashtable);
-            }
+            hashtable = (Hashtable)Data.GetValue().Find(item => item is Hashtable);
 
             Watch.Reset();
             Watch.Start();

@@ -10,11 +10,6 @@
 
         public override long GetPerformanceToAdd()
         {
-            if (dictionary.Count != 0)
-            {
-                dictionary.Clear();
-            }
-
             Watch.Reset();
             Watch.Start();
 
@@ -24,6 +19,8 @@
             }
 
             Watch.Stop();
+
+            dictionary.Clear();
 
             return Calculate.GetResultWithoutOverhead();
         }
@@ -36,7 +33,7 @@
             Watch.Start();
 
             var result = dictionary.Values
-                                   .OfType<string>()
+                                   .ToList()
                                    .Where(item => item.Equals(Data.ForSearch));
 
             Watch.Stop();
@@ -46,10 +43,7 @@
 
         public override long GetPerformanceToClear()
         {
-            if (dictionary.Count == 0)
-            {
-                dictionary = (Dictionary<int, object>)Data.ListObject.Find(item => item is Dictionary<int, object>);
-            }
+            dictionary = (Dictionary<int, object>)Data.GetValue().Find(item => item is Dictionary<int, object>);
 
             Watch.Reset();
             Watch.Start();
